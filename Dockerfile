@@ -7,7 +7,8 @@ RUN apt-get update && apt-get install -y \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Copy app and data into Shiny Server directory
-COPY . /srv/shiny-server/
+COPY app.R /srv/shiny-server/
+COPY all_2016_2017_sur.csv /srv/shiny-server/
 RUN chown -R shiny:shiny /srv/shiny-server
 
 # Install R package dependencies
@@ -22,3 +23,4 @@ HEALTHCHECK --interval=5m --timeout=10s --start-period=30s --retries=3 \
 
 # Start Shiny Server
 CMD ["/usr/bin/shiny-server"]
+
