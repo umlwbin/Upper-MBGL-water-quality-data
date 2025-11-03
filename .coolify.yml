@@ -1,0 +1,9 @@
+version: "1.0"
+services:
+  app:
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - 3838
+    env:
+      - PORT=3838
