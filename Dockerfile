@@ -18,9 +18,10 @@ RUN R -e "install.packages(c('shiny', 'plotly', 'dplyr', 'readr', 'tidyr', 'tool
 EXPOSE 3838
 
 # Add a lightweight health check every 5 minutes
-HEALTHCHECK --interval=5m --timeout=10s --start-period=30s --retries=3 \
+HEALTHCHECK --interval=5m --timeout=10s --start-period=90s --retries=3 \
   CMD curl -fs http://localhost:3838/health || exit 1
 
 # Start Shiny Server
 CMD ["/usr/bin/shiny-server"]
+
 
