@@ -6,31 +6,6 @@ library(tidyr)
 
 
 # ==============================================================================
-# LIGHTWEIGHT HEALTH ENDPOINT
-# ==============================================================================
-
-# Define a simple /health handler that responds quickly without starting a session
-health_handler <- function(req) {
-  list(
-    status = 200,
-    headers = list('Content-Type' = 'text/plain'),
-    body = "OK"
-  )
-}
-
-# Register /health handler (before app starts)
-options(shiny.http.response.handlers = list(
-  health = function(req) {
-    if (identical(req$PATH_INFO, "/health")) {
-      return(health_handler(req))
-    }
-    NULL
-  }
-))
-
-
-
-# ==============================================================================
 # UI
 # ==============================================================================
 
@@ -423,3 +398,4 @@ server <- function(input, output, session) {
 # ==============================================================================
 
 shinyApp(ui = ui, server = server)
+
