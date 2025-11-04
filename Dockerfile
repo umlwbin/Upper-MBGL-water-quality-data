@@ -17,12 +17,13 @@ RUN R -e "install.packages(c('shiny', 'plotly', 'dplyr', 'readr', 'tidyr', 'tool
 # Expose Shiny Server port
 EXPOSE 3838
 
-# Add a lightweight health check every 5 minutes
-HEALTHCHECK --interval=5m --timeout=10s --start-period=90s --retries=3 \
+# Add a health check every 60 minutes
+HEALTHCHECK --interval=60m --timeout=10s --start-period=90s --retries=3 \
   CMD curl -fs http://localhost:3838 || exit 1
 
 # Start Shiny Server
 CMD ["/usr/bin/shiny-server"]
+
 
 
 
